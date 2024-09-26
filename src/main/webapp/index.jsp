@@ -5,12 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Home Page</title>
+
 <%@include file="all_component/allcss.jsp" %>
 </head>
 <body>
 
 
-<h1>Hello World</h1>
+<%@include file="all_component/navbar.jsp" %>
+
+
 
 </body>
 </html>
