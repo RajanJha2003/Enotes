@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home Page</title>
+<%@include file="all_component/allcss.jsp" %>
 </head>
 <body>
+
+
+<h1>Hello World</h1>
 
 </body>
 </html>
