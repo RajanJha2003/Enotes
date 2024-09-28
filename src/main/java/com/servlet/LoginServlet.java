@@ -8,41 +8,37 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import com.DAO.UserDAO;
 import com.DB.DBConnect;
 import com.User.UserDetails;
 
 /**
- * Servlet implementation class UserServlet
+ * Servlet implementation class LoginServlet
  */
-public class UserServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String uname=request.getParameter("uname");
 		String uemail=request.getParameter("uemail");
 		String upassword=request.getParameter("upassword");
 		
 		UserDetails userDetails=new UserDetails();
-		userDetails.setName(uname);
 		userDetails.setEmail(uemail);
 		userDetails.setPassword(upassword);
 		
 		UserDAO dao=new UserDAO(DBConnect.getConn());
-		boolean f=dao.addUser(userDetails);
+		boolean f=dao.loginUser(userDetails);
 		
 		
 		if(f) {
-			HttpSession session=request.getSession();
-			session.setAttribute("reg-success","Registration successful");
-			response.sendRedirect("register.jsp");
+			response.sendRedirect("home.jsp");
 			
 		}else {
-			HttpSession session=request.getSession();
-			session.setAttribute("failed-msg","Something went wrong");
-			response.sendRedirect("register.jsp");
+			
 			
 		}
 		

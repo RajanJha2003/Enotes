@@ -19,20 +19,51 @@
 					<i class="fa fa-user-plus fa-3x " aria-hidden="true"></i>
 					<h4>Login</h4>
 					</div>
+					
+					<%
+					String regMsg = (String) session.getAttribute("login-success");
+
+					if (regMsg != null) {
+					%>
+					<div class="alert alert-success">
+						<%=regMsg%>
+						
+					</div>
+
+					<%
+					
+					session.removeAttribute("login-success");
+					}
+					%>
+
+					<%
+					String failedMsg = (String) session.getAttribute("failed-msg");
+
+					if (failedMsg != null) {
+					%>
+					<div class="alert alert-danger">
+						<%=failedMsg%>
+					</div>
+
+					<%
+					
+					session.removeAttribute("failed-msg");
+					}
+					%>
 
 					<div class="card-body">
-						<form>
+						<form method="post" action="LoginServlet">
 						
 							<div class="form-group">
 							<label>Enter Email</label>
 								 <input
 									type="email" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp"> 
+									aria-describedby="emailHelp" name="uemail"> 
 							</div>
 							<div class="form-group">
 							<label>Enter Password</label>
 								 <input
-									type="password" class="form-control" id="exampleInputPassword1">
+									type="password" class="form-control" id="exampleInputPassword1" name="upassword">
 							</div>
 							
 							<button type="submit" class="btn btn-primary badge-pill btn-block">Login</button>
